@@ -12,7 +12,7 @@ def check_config(units):
     results = {}
     for unit in units:
         try:
-            results[unit] = config.get("DEFAULT", unit)
+            results[unit] = config.get("i3blocks.py", unit)
         except (configparser.NoOptionError, configparser.NoSectionError) as e:
             print(f"Error: {e}")
             results[unit] = "unknown"
