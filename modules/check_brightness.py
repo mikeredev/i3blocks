@@ -27,3 +27,7 @@ def check(warning=None, critical=None):
     else:
         icon = f"<span font='FontAwesome' color='{color}'>\uf042</span>"
     print(f"{output} {icon}")
+
+    p1.stdout.close()
+    p2.stdout.close()
+    p3.stdout.close()

@@ -12,6 +12,7 @@ def check(warning, critical):
         if error:
             print(f"Command failed: {cmd}.\nError message: {error.decode()}")
         return output.decode().strip()
+        proc.stdout.close()
 
     def is_volume_enabled():
         output = get_output(["pacmd", "list-sinks"])

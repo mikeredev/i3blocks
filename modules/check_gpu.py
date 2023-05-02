@@ -35,6 +35,7 @@ def get_gpu_temperature():
         proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     output = proc.communicate()[0].decode().strip()
     return int(output)
+    proc.stdout.close()
 
 
 def get_gpu_vram_utilized():
@@ -49,6 +50,8 @@ def get_gpu_vram_utilized():
         proc = subprocess.Popen(cmd2, stdin=proc1.stdout, stdout=subprocess.PIPE)
     output = proc.communicate()[0].decode()
     return output
+    proc1.stdout.close()
+    proc2.stdout.close()
 
 
 def check(warning, critical):

@@ -12,6 +12,7 @@ def check(warning, critical):
     if error:
         print(f"Check failed: {error.decode()}")
         return
+    proc.stdout.close()
 
     lines = output.decode().strip().split("\n")
     value = next((line.split()[0] for line in lines if "*" in line), None)
