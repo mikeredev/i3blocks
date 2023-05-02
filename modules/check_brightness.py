@@ -4,10 +4,12 @@ try:
 except ImportError as e:
     print(f"Check failed: {e}")
 
+MONITOR = "HDMI-0"
+
 
 def check(warning, critical):
     cmd = ["xrandr", "--verbose"]
-    cmd2 = ["grep", "HDMI-0", "-A", "6"]
+    cmd2 = ["grep", MONITOR, "-A", "6"]
     cmd3 = ["grep", "-oP", "(?<=Brightness: )[^ ]+"]
 
     p1 = subprocess.Popen(cmd, stdout=subprocess.PIPE)

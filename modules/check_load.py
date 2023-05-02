@@ -5,7 +5,7 @@ try:
 except ImportError as e:
     print(f"Check failed: {e}")
 
-INCLUDE_FAN = False  # disabled on desktop
+INCLUDE_FAN = False
 PATH_TO_FAN = "/sys/devices/platform/asus-nb-wmi/fan_boost_mode"
 
 
