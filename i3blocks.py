@@ -5,7 +5,7 @@ from importlib import import_module
 CHECK_MODULES = {
     "battery": "check_battery",
     "brightness": "check_brightness",
-    "gputemp": "check_gputemp",
+    "gpu": "check_gpu",
     "load": "check_load",
     "memory": "check_memory",
     "time": "check_time",

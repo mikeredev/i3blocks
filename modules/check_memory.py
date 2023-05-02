@@ -1,6 +1,6 @@
 try:
-    from .check_value import check_value
     import psutil
+    from .functions import check_value
 except ImportError as e:
     print(f"Check failed: {e}")
 

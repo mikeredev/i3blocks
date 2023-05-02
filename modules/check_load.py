@@ -1,32 +1,49 @@
 try:
-    from .check_value import check_value
     import os
     import subprocess
+    from .functions import check_config, check_value
 except ImportError as e:
     print(f"Check failed: {e}")
 
-INCLUDE_FAN = False
-PATH_TO_FAN = "/sys/devices/platform/asus-nb-wmi/fan_boost_mode"
+# read system fan from config
+config = check_config(["fan"])
+FAN = config.get("fan", "unknown")
+
+INCLUDE_FAN = True
 
 
 def get_fan_status():
-    try:
-        result = subprocess.run(
-            ["cat", PATH_TO_FAN], capture_output=True, text=True, check=True
+    if FAN == "asus-nb-wmi":
+        PATH_TO_FAN = "/sys/devices/platform/asus-nb-wmi/fan_boost_mode"
+        try:
+            result = subprocess.run(
+                ["cat", PATH_TO_FAN], capture_output=True, text=True, check=True
+            )
+            mode = result.stdout.strip()
+        except subprocess.CalledProcessError as e:
+            print(f"Fan check failed: {e}")
+            return None
+
+        fan_modes = {
+            "0": "<span font='FontAwesome' foreground='#666666'>\uf863</span>",
+            "1": "<span font='FontAwesome' foreground='#A9A9A9'>\uf863</span>",
+            "2": "<span font='FontAwesome' foreground='#FFFFFF'>\uf863</span>",
+        }
+
+        fan_mode = fan_modes.get(mode, "")
+        return fan_mode
+    if FAN == "nvidia-smi":
+        # Run nvidia-smi command and extract fan speed value
+        output = subprocess.run(
+            ["nvidia-smi", "--query-gpu=fan.speed", "--format=csv,noheader"],
+            capture_output=True,
+            text=True,
         )
-        mode = result.stdout.strip()
-    except subprocess.CalledProcessError as e:
-        print(f"Fan check failed: {e}")
-        return None
+        fan_speed = output.stdout.strip().split("%")[0]
 
-    fan_modes = {
-        "0": "<span font='FontAwesome' foreground='#666666'>\uf863</span>",
-        "1": "<span font='FontAwesome' foreground='#A9A9A9'>\uf863</span>",
-        "2": "<span font='FontAwesome' foreground='#FFFFFF'>\uf863</span>",
-    }
-
-    fan_mode = fan_modes.get(mode, "")
-    return fan_mode
+        # Print fan speed value
+        fan_mode = fan_speed
+        return f"{fan_mode}%"
 
 
 def check(warning, critical):

@@ -1,13 +1,16 @@
 try:
-    from .check_value import check_value
+    import configparser
     import subprocess
+    from .functions import check_config, check_value
 except ImportError as e:
     print(f"Check failed: {e}")
 
-MONITOR = "HDMI-0"
+# read monitor name from config
+config = check_config(["monitor"])
+MONITOR = config.get("monitor", "unknown")
 
 
-def check(warning, critical):
+def check(warning=None, critical=None):
     cmd = ["xrandr", "--verbose"]
     cmd2 = ["grep", MONITOR, "-A", "6"]
     cmd3 = ["grep", "-oP", "(?<=Brightness: )[^ ]+"]
@@ -17,7 +20,10 @@ def check(warning, critical):
     p3 = subprocess.Popen(cmd3, stdin=p2.stdout, stdout=subprocess.PIPE)
 
     output = p3.communicate()[0].decode("utf-8").strip()
-
     color = check_value(output, "float", warning, critical, "gt")
-    icon = f"<span font='FontAwesome' foreground='{color}'>\uf042</span>"
+
+    if float(output) > 0.7:
+        icon = f"<span font='FontAwesome' color='{color}'>\uf042</span>"
+    else:
+        icon = f"<span font='FontAwesome' color='{color}'>\uf042</span>"
     print(f"{output} {icon}")

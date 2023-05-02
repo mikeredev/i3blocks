@@ -2,7 +2,7 @@ try:
     import psutil
     import os
     import subprocess
-    from .check_value import check_value
+    from .functions import check_value
 except ImportError as e:
     print(f"Check failed: {e}")
 
