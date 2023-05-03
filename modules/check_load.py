@@ -6,10 +6,9 @@ except ImportError as e:
     print(f"Check failed: {e}")
 
 # read system fan from config
-config = check_config(["fan"])
+config = check_config(["fan", "fan_present"])
 FAN = config.get("fan", "unknown")
-
-INCLUDE_FAN = True
+INCLUDE_FAN = config.get("fan_present", "unknown")
 
 
 def get_fan_status():
@@ -32,7 +31,7 @@ def get_fan_status():
 
         fan_mode = fan_modes.get(mode, "")
         return fan_mode
-    if FAN == "nvidia-smi":
+    if FAN == "nvidia":
         # Run nvidia-smi command and extract fan speed value
         output = subprocess.run(
             ["nvidia-smi", "--query-gpu=fan.speed", "--format=csv,noheader"],
