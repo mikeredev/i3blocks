@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import customtkinter
 import subprocess
-import time
-import sys
 
 customtkinter.set_appearance_mode("dark")
 
@@ -24,26 +22,6 @@ def system_control(option):
         subprocess.run(["systemctl", "poweroff"])
     else:
         print("Invalid option")
-
-
-def t():
-    frame1 = customtkinter.CTkFrame(master=root)
-    frame1.grid(row=0, column=0, pady=20, padx=20, sticky="nsw")
-
-    button_lock = customtkinter.CTkButton(
-        master=frame1, text="Lock", command=lambda: system_control("lock")
-    )
-    button_lock.grid(row=0, column=0, padx=20, pady=10, sticky="e")
-
-    frame2 = customtkinter.CTkFrame(master=root)
-    frame2.grid(row=0, column=1, pady=20, padx=20, sticky="nsw")
-
-    button_lock = customtkinter.CTkButton(
-        master=frame2, text="Lock", command=lambda: system_control("lock")
-    )
-    button_lock.grid(row=0, column=0, padx=20, pady=10, sticky="w")
-
-    root.mainloop()
 
 
 def main():
