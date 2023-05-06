@@ -1,27 +1,38 @@
 #!/usr/bin/env python3
 import customtkinter
+import os
 import subprocess
 
-customtkinter.set_appearance_mode("dark")
+dir_path = os.path.dirname(os.path.realpath(__file__))
+style_path = os.path.join(dir_path, "..", "styles/", "session_manager.json")
+customtkinter.set_default_color_theme(style_path)
 
 root = customtkinter.CTk()
 root.attributes("-type", "dialog")
 root.geometry("400x180+1510+11")
 
 
+def close_gui():
+    root.destroy()
+
+
 def system_control(option):
     if option == "lock":
-        subprocess.run(["i3lock"])
+        _lock = lambda: [close_gui(), subprocess.run(["i3lock"])]
+        _lock()
     elif option == "logoff":
         subprocess.run(["i3-msg", "exit"])
     elif option == "suspend":
-        subprocess.run(["systemctl", "suspend"])
+        _suspend = lambda: [
+            close_gui(),
+            subprocess.run(["i3lock"]),
+            subprocess.run(["systemctl", "suspend"]),
+        ]
+        _suspend()
     elif option == "reboot":
         subprocess.run(["systemctl", "reboot"])
     elif option == "shutdown":
         subprocess.run(["systemctl", "poweroff"])
-    else:
-        print("Invalid option")
 
 
 def main():
