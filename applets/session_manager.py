@@ -8,8 +8,9 @@ style_path = os.path.join(dir_path, "..", "styles/", "session_manager.json")
 customtkinter.set_default_color_theme(style_path)
 
 root = customtkinter.CTk()
-root.attributes("-type", "dialog")
+root.attributes("-type", "splash")
 root.geometry("400x180+1510+11")
+root.overrideredirect(True)
 
 
 def close_gui():
