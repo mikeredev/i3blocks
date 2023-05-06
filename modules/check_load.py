@@ -38,11 +38,16 @@ def get_fan_status():
             capture_output=True,
             text=True,
         )
-        fan_speed = output.stdout.strip().split("%")[0]
+        fan_speed = int(output.stdout.strip().split("%")[0])
 
         # Print fan speed value
-        fan_mode = fan_speed
-        return f"{fan_mode}%"
+        if fan_speed < 5:
+            fan_mode = "<span font='FontAwesome' foreground='#666666'>\uf863</span>"
+        elif 5 <= fan_speed <= 40:
+            fan_mode = "<span font='FontAwesome' foreground='#A9A9A9'>\uf863</span>"
+        elif 40 <= fan_speed <= 100:
+            fan_mode = "<span font='FontAwesome' foreground='#FFFFFF'>\uf863</span>"
+        return f"{fan_mode}"
 
 
 def check(warning, critical):
