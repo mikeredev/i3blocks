@@ -9,7 +9,7 @@ customtkinter.set_default_color_theme(style_path)
 
 root = customtkinter.CTk()
 root.attributes("-type", "splash")
-root.geometry("400x180+1510+11")
+root.geometry("400x180+1510+5")
 root.overrideredirect(True)
 
 
@@ -18,22 +18,21 @@ def close_gui():
 
 
 def system_control(option):
-    if option == "lock":
-        _lock = lambda: [close_gui(), subprocess.run(["i3lock"])]
-        _lock()
-    elif option == "logoff":
-        subprocess.run(["i3-msg", "exit"])
-    elif option == "suspend":
-        _suspend = lambda: [
+    actions = {
+        "lock": lambda: [close_gui(), subprocess.run(["i3lock"])],
+        "logoff": lambda: subprocess.run(["i3-msg", "exit"]),
+        "suspend": lambda: [
             close_gui(),
             subprocess.run(["i3lock"]),
             subprocess.run(["systemctl", "suspend"]),
-        ]
-        _suspend()
-    elif option == "reboot":
-        subprocess.run(["systemctl", "reboot"])
-    elif option == "shutdown":
-        subprocess.run(["systemctl", "poweroff"])
+        ],
+        "reboot": lambda: subprocess.run(["systemctl", "reboot"]),
+        "shutdown": lambda: subprocess.run(["systemctl", "poweroff"]),
+    }
+
+    action = actions.get(option)
+    if action:
+        action()
 
 
 def main():
