@@ -56,7 +56,7 @@ def check(warning, critical):
     load = round(load_avg[0] / cores, 1)
     color = check_value(load, "float", warning, critical, "gt")
 
-    if INCLUDE_FAN:
+    if INCLUDE_FAN.lower()=="true":
         fan_mode = get_fan_status()
         if fan_mode is not None:
             print(
