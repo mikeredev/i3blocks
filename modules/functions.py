@@ -3,8 +3,9 @@ def check_config(units):
     import configparser
 
     # Get the absolute path of the directory that contains this script
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    config_file_path = os.path.join(dir_path, "..", "i3blocks.py.conf")
+    # dir_path = os.path.dirname(os.path.realpath(__file__))
+    # config_file_path = os.path.join(dir_path, "..", "i3blocks.py.conf")
+    config_file_path = os.path.expanduser("~/.config/i3blocks/i3blocks.py.conf")
 
     config = configparser.ConfigParser()
     config.read(config_file_path)
