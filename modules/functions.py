@@ -58,3 +58,14 @@ def check_value(value, datatype, warning_threshold, critical_threshold, compare)
             raise ValueError("Invalid comparison. Must be 'gt' or 'lt'.")
     except ValueError as e:
         raise e
+
+
+def get_output(cmd):
+    import subprocess
+
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output, error = proc.communicate()
+    if error:
+        print(f"Command failed: {cmd}. Error message: {error.decode()}")
+    return output.decode().strip()
+    proc.stdout.close()
