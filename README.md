@@ -1,3 +1,5 @@
+![image](https://github.com/mikeredev/i3blocks/assets/132297919/5df378f9-c611-4991-899c-9e46f331d936)
+
 ## i3blocks control script
 
 ### Setup virtual environment
