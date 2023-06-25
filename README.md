@@ -1,3 +1,5 @@
+![image](https://github.com/mikeredev/i3blocks/assets/132297919/5df378f9-c611-4991-899c-9e46f331d936)
+
 ## i3blocks control script
 
 ### Setup virtual environment
@@ -22,3 +24,7 @@ Add or remove entries as desired, google "i3blocks conf documentation" for more 
 ### i3blocks.py
 Make executable, e.g., `chmod +x i3blocks.py`
 Start via i3, e.g., `bar { status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf }`
+
+
+### Checks
+Define checks with arguments in `i3blocks.conf`. Script will return `OK`, `WARN`, or `NOK` and alert as configured.
