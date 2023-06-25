@@ -1,32 +1,24 @@
-# i3blocks Control Script
+## i3blocks control script
 
-This is a Python script that provides a command-line interface for performing various checks that can be used with the i3blocks status bar. The available checks include:
-
-- Battery
-- Brightness
-- GPU temperature
-- Load
-- Memory
-- Time
-- Volume
-- WiFi
-
-The script takes the following arguments:
-
-- `--check`: The check to perform (required).
-- `--warning`: The warning threshold.
-- `--critical`: The critical threshold.
-- `--compare`: The comparison operator (`lt` for less than, `gt` for greater than).
-- `--datatype`: The data type (`int` or `float`).
-
-The script dynamically imports the appropriate module for the specified check and calls its `check()` function with the provided arguments. If the check fails, an error message is printed.
-
-To use this script with i3blocks, you can create a custom block that calls the script with the appropriate arguments. For example:
-
+### Setup virtual environment
 ```
-[battery]
-command=/path/to/i3blocks_control.py --check battery --warning 20 --critical 10 --compare lt --datatype int
-interval=30
+$ cd ~/data/scripts/i3blocks/
+$ python -m venv venv
+$ source venv/bin/activate
+venv$ pip install -r requirements.txt
 ```
+### Copy config files
+Copy default configs to `~/.config/i3blocks/i3blocks.conf` and `~/.config/i3blocks/i3blocks.conf.json`
 
-This block will display the battery status and change color when the battery level drops below 20% (warning) or 10% (critical).
+### JSON config file
+Specify monitor name and audio sink (required!)
+GPUs supported: `nvidia`
+Fans supported: `nvidia` `asus-nb-wmi`
+Toggle time:adjust_glare to disable brightness/gamma changes on day/night
+
+### i3blocks.conf
+Add or remove entries as desired, google "i3blocks conf documentation" for more info
+
+### i3blocks.py
+Make executable, e.g., `chmod +x i3blocks.py`
+Start via i3, e.g., `bar { status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf }`

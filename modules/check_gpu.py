@@ -1,64 +1,94 @@
+""" check_gpu.py
+monitors:   GPU temperature, GPU VRAM utilization%
+requires:   nvidia-smi
+usage:      /path/to/i3blocks.py --check gpu --warning 70 --critical 80
+"""
+# import modules
+import subprocess
+import sys
+
+# import custom modules
 try:
-    import configparser
-    import os
-    import subprocess
-    from .functions import check_config, check_value
-except ImportError as e:
-    print(f"Check failed: {e}")
+    from functions.generic import (
+        load_configuration,
+        read_configuration,
+        perform_check,
+    )
+except:
+    print(f"Failed to load custom modules. Call this script via i3blocks.py only.")
+    sys.exit(1)
+
+# load configuration file
+conf = load_configuration()
+color_ok = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_ok")
+color_warn = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_warn")
+color_nok = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_nok")
+
+# load check specifics from configuration file
+gpu_type = read_configuration(conf, "i3blocks", 0, "gpu", 0, "gpu_type")
+gpu_temp_unit = read_configuration(conf, "i3blocks", 0, "gpu", 0, "gpu_temp_unit")
 
 
-# read GPU manufacturer and temperature unit from config
-config = check_config(["gpu", "gpu_temp_unit"])
-GPU = config.get("gpu", "unknown")
-TEMP_UNIT = config.get("gpu_temp_unit", "unknown")
+# function to return GPU temperature
+def get_gpu_temperature(gpu_type):
+    if gpu_type.lower() == "nvidia":
+        cmd_temperature = "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader"
+        proc_temperature = subprocess.Popen(
+            cmd_temperature, shell=True, stdout=subprocess.PIPE
+        )
+        output_temperature = proc_temperature.communicate()[0].decode().strip()
+        proc_temperature.stdout.close()
+    else:
+        print(f"GPU [{gpu_type}] not supported")
+        sys.exit(1)
+    return int(output_temperature)
 
 
-ICONS = {
-    range(75, 101): "\uf2c7",  # thermometer full
-    range(50, 75): "\uf2c8",  # thermometer 3/4
-    range(25, 50): "\uf2c9",  # thermometer 1/2
-    range(0, 25): "\uf2ca",  # thermometer 1/4
-}
-DEFAULT_ICON = "\uf2cb"  # thermometer empty
+# function to return GPU VRAM utilization
+def get_gpu_vram_utilized(gpu_type):
+    if gpu_type.lower() == "nvidia":
+        cmd_vram_utilization = "nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader | awk -F, '{printf(\"%.0f%%\", $1/$2*100)}'"
+        proc_vram_utilization = subprocess.Popen(
+            cmd_vram_utilization, shell=True, stdout=subprocess.PIPE
+        )
+        output_vram_utilization = proc_vram_utilization.communicate()[0].decode()
+        proc_vram_utilization.stdout.close()
+    else:
+        print(f"GPU [{gpu_type}] not supported")
+        sys.exit(1)
+    return output_vram_utilization
 
 
-def get_temperature_icon(temperature):
-    for value_range, icon in ICONS.items():
-        if temperature in value_range:
+# function to return a temperature icon representing GPU temperature
+def get_icon(value):
+    icons = {
+        range(75, 101): "\uf2c7",  # thermometer full
+        range(50, 75): "\uf2c8",  # thermometer 3/4
+        range(25, 50): "\uf2c9",  # thermometer 1/2
+        range(0, 25): "\uf2ca",  # thermometer 1/4
+    }
+    default_icon = "\uf2cb"  # thermometer empty
+    for value_range, icon in icons.items():
+        if value in value_range:
             return icon
-    return DEFAULT_ICON
+    return default_icon
 
 
-def get_gpu_temperature():
-    if GPU == "nvidia":
-        cmd = ["nvidia-smi", "--query-gpu=temperature.gpu", "--format=csv,noheader"]
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    output = proc.communicate()[0].decode().strip()
-    return int(output)
-    proc.stdout.close()
+# i3blocks_check function called by i3blocks.py
+def i3blocks_check(warning, critical):
+    # gather check data
+    gpu_temperature = get_gpu_temperature(gpu_type)
+    gpu_vram_utilized = get_gpu_vram_utilized(gpu_type)
 
+    # compare results to thresholds
+    check_results = perform_check(
+        gpu_temperature, "int", warning, critical, "gt", color_ok, color_warn, color_nok
+    )
+    color = check_results["color"]
+    result = check_results["result"]
+    icon = get_icon(gpu_temperature)
 
-def get_gpu_vram_utilized():
-    if GPU == "nvidia":
-        cmd1 = [
-            "nvidia-smi",
-            "--query-gpu=memory.used,memory.total",
-            "--format=csv,noheader",
-        ]
-        cmd2 = ["awk", "-F,", '{printf("%.0f%%", $1/$2*100)}']
-        proc1 = subprocess.Popen(cmd1, stdout=subprocess.PIPE)
-        proc = subprocess.Popen(cmd2, stdin=proc1.stdout, stdout=subprocess.PIPE)
-    output = proc.communicate()[0].decode()
-    return output
-    proc1.stdout.close()
-    proc2.stdout.close()
-
-
-def check(warning, critical):
-    value = get_gpu_temperature()
-    vram = get_gpu_vram_utilized()
-    icon = get_temperature_icon(value)
-    color = check_value(value, "int", warning, critical, "gt")
+    # print output
     print(
-        f"{vram} {value}{TEMP_UNIT} <span font='FontAwesome' foreground='{color}'>{icon}</span>"
+        f"{gpu_vram_utilized} {gpu_temperature}{gpu_temp_unit} <span font='FontAwesome' foreground='{color}'>{icon}</span>"
     )
