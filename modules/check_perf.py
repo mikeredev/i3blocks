@@ -1,6 +1,7 @@
 """ check_perf.py
 monitors:   CPU load
 optional:   fan speed
+requires:   nvidia-smi
 usage:      /path/to/i3blocks.py --check perf --warning 0.7 --critical 1.0
 """
 

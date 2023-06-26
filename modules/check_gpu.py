@@ -3,6 +3,7 @@ monitors:   GPU temperature, GPU VRAM utilization%
 requires:   nvidia-smi
 usage:      /path/to/i3blocks.py --check gpu --warning 70 --critical 80
 """
+
 # import modules
 import subprocess
 import sys

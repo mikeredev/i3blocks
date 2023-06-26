@@ -28,6 +28,7 @@ monitor = read_configuration(conf, "i3blocks", 0, "system", 0, "monitor")
 # load check specifics from configuration file
 day = read_configuration(conf, "i3blocks", 0, "time", 0, "day")
 night = read_configuration(conf, "i3blocks", 0, "time", 0, "night")
+time_format = read_configuration(conf, "i3blocks", 0, "time", 0, "time_format")
 adjust_glare = read_configuration(conf, "i3blocks", 0, "time", 0, "adjust_glare")
 day_brightness = read_configuration(conf, "i3blocks", 0, "time", 0, "day_brightness")
 day_gamma = read_configuration(conf, "i3blocks", 0, "time", 0, "day_gamma")
@@ -74,7 +75,7 @@ def adjust_glare_run(time_of_day):
 # i3blocks_check function called by i3blocks.py
 def i3blocks_check(warning=None, critical=None):
     # get the current date and time
-    str_datetime = datetime.now().strftime("%d/%m %H:%M:%S")
+    str_datetime = datetime.now().strftime(time_format)
 
     # set icon color based on brightness level
     brightness = get_level("Brightness")  # case sensitive

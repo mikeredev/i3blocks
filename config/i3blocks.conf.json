@@ -15,7 +15,7 @@
             ],
             "perf": [
                 {
-                    "fan_present": true,
+                    "fan_present": false,
                     "fan_type": "nvidia"
                 }
             ],
@@ -30,7 +30,8 @@
                 {
                     "day": 6,
                     "night": 20,
-                    "adjust_glare": true,
+                    "time_format": "%d/%m %H:%M",
+                    "adjust_glare": false,
                     "day_brightness": 1.0,
                     "day_gamma": 1.0,
                     "night_brightness": 1.0,

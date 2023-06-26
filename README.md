@@ -1,6 +1,7 @@
 ![image](https://github.com/mikeredev/i3blocks/assets/132297919/5df378f9-c611-4991-899c-9e46f331d936)
 
 ## i3blocks control script
+This supports whatever hardware runs on my laptop/desktop
 
 ### Setup virtual environment
 ```
@@ -22,9 +23,10 @@ Toggle time:adjust_glare to disable brightness/gamma changes on day/night
 Add or remove entries as desired, google "i3blocks conf documentation" for more info
 
 ### i3blocks.py
-Make executable, e.g., `chmod +x i3blocks.py`
+Make executable via `chmod +x i3blocks.py`
 Start via i3, e.g., `bar { status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf }`
-
 
 ### Checks
 Define checks with arguments in `i3blocks.conf`. Script will return `OK`, `WARN`, or `NOK` and alert as configured.
+For example, `i3blocks.py --check wifi --warning 40 --critical 20` would highlight when the SSID signal strength is
+below 40 or 20%, and additional actions (e.g., notify-send) can be added here.
