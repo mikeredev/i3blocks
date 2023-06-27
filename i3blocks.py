@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
-""" i3blocks.py
-usage:  i3blocks.py [-h] --check {time,gpu,perf,memory,wifi,media} [--warning WARNING] [--critical CRITICAL] [--compare {lt,gt}] [--datatype {int,float}]
-options:
-    -h, --help                                show this help message and exit
-    --check {time,gpu,perf,memory,wifi,media} check to perform
-    --warning WARNING                         warning threshold
-    --critical CRITICAL                       critical threshold
-    --compare {lt,gt}                         comparison
-    --datatype {int,float}                    int or float
+"""
+i3blocks.py
+desc:         A script for controlling i3blocks and performing checks.
+usage:        python i3blocks.py [--check CHECK] [--warning WARNING] [--critical CRITICAL] [--compare COMPARE] [--datatype DATATYPE]
+requirements: argparse, importlib
+function:     This script allows you to control i3blocks and perform checks by specifying the check to be performed, along with optional warning and critical thresholds, comparison type, and data type.
+arguments:
+    --check CHECK: The check to perform. Available options are 'battery', 'gpu', 'media', 'memory', 'perf', 'time', and 'wifi'.
+    --warning WARNING: The warning threshold for the check.
+    --critical CRITICAL: The critical threshold for the check.
+    --compare COMPARE: The type of comparison to perform. Available options are 'lt' (less than) and 'gt' (greater than).
+    --datatype DATATYPE: The data type to use for comparisons. Available options are 'int' and 'float'.
+returns:      None
+notes:        The script loads the specified module from the 'modules' package and calls its 'i3blocks_check' function, passing the provided arguments. If an error occurs, the exception is printed.
+example:      python i3blocks.py --check battery --warning 20 --critical 10
 """
 
 # import modules
