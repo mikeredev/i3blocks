@@ -118,7 +118,7 @@ def i3blocks_check(warning, critical):
     if fan_present:
         fan_mode = get_fan_speed(fan_type)
         print(
-            f"{load} <span font='FontAwesome' foreground='{color}'>\uf0e4</span> {fan_mode}"
+            f"{load} <span font='FontAwesome' foreground='{color}'>\uf3fd</span> {fan_mode}"
         )
     else:
-        print(f"{load} <span font='FontAwesome' foreground='{color}'>\uf0e4</span>")
+        print(f"{load} <span font='FontAwesome' foreground='{color}'>\uf3fd</span>")

@@ -102,5 +102,5 @@ def i3blocks_check(warning=None, critical=None):
 
     # print output
     print(
-        f"{str_datetime} <span font_desc='FontAwesome' foreground='{foreground_color}'>{icon}</span>"
+        f"{str_datetime.upper()} <span font_desc='FontAwesome' foreground='{foreground_color}'>{icon}</span>"
     )
