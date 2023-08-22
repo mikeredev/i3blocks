@@ -91,5 +91,6 @@ def i3blocks_check(warning, critical):
 
     # print output
     print(
-        f"{gpu_vram_utilized} {gpu_temperature}{gpu_temp_unit} <span font='FontAwesome' foreground='{color}'>{icon}</span>"
+        #f"{gpu_vram_utilized} {gpu_temperature}{gpu_temp_unit} <span font='FontAwesome' foreground='{color}'>{icon}</span>"
+        f"{gpu_vram_utilized} <span font='FontAwesome' foreground='{color}'>{icon}</span>"
     )
