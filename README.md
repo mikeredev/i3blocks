@@ -32,6 +32,4 @@ Start via i3, e.g., `bar { status_command i3blocks -c ~/.config/i3blocks/i3block
 #### Checks
 Define checks with arguments in `i3blocks.conf`. Script will return `OK`, `WARN`, or `NOK` and alert as configured.
 
-For example, `i3blocks.py --check wifi --warning 40 --critical 20` would highlight when the SSID signal strength is
-
-below 40 or 20%, and additional actions (e.g., notify-send) can be added here.
+For example, `i3blocks.py --check wifi --warning 40 --critical 20` would highlight when the SSID signal strength is below 40 or 20%, and additional actions (e.g., notify-send) can be added here.
