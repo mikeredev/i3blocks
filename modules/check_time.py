@@ -29,15 +29,6 @@ monitor = read_configuration(conf, "i3blocks", 0, "system", 0, "monitor")
 day = read_configuration(conf, "i3blocks", 0, "time", 0, "day")
 night = read_configuration(conf, "i3blocks", 0, "time", 0, "night")
 time_format = read_configuration(conf, "i3blocks", 0, "time", 0, "time_format")
-adjust_glare = read_configuration(
-    conf, "i3blocks", 0, "time", 0, "adjust_glare")
-day_brightness = read_configuration(
-    conf, "i3blocks", 0, "time", 0, "day_brightness")
-day_gamma = read_configuration(conf, "i3blocks", 0, "time", 0, "day_gamma")
-night_brightness = read_configuration(
-    conf, "i3blocks", 0, "time", 0, "night_brightness"
-)
-night_gamma = read_configuration(conf, "i3blocks", 0, "time", 0, "night_gamma")
 
 # load device status colors
 device_inactive = read_configuration(
@@ -64,17 +55,6 @@ def get_level(level):
     return level
 
 
-# function to adjust screen brightness and gamma
-def adjust_glare_run(time_of_day):
-    gamma_level = get_level("Gamma")  # case sensitive
-    if time_of_day == "day" and gamma_level != day_gamma:
-        cmd = f"xrandr --output {monitor} --brightness {day_brightness} --gamma {day_gamma}"
-        proc = subprocess.Popen(cmd, shell=True)
-    elif time_of_day == "night" and gamma_level != night_gamma:
-        cmd = f"xrandr --output {monitor} --brightness {night_brightness} --gamma {night_gamma}"
-        proc = subprocess.Popen(cmd, shell=True)
-
-
 # i3blocks_check function called by i3blocks.py
 def i3blocks_check(warning=None, critical=None):
     # get the current date and time
@@ -98,10 +78,6 @@ def i3blocks_check(warning=None, critical=None):
     if current_hour >= int(night) or current_hour < int(day):
         icon = "\uf186"  # Moon icon
         time_of_day = "night"
-
-    # adjust glare if `adjust_glare = True`
-    if adjust_glare:
-        adjust_glare_run(time_of_day)
 
     # print output
     print(

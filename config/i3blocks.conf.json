@@ -30,12 +30,7 @@
                 {
                     "day": 6,
                     "night": 20,
-                    "time_format": "%d/%m %H:%M",
-                    "adjust_glare": false,
-                    "day_brightness": 1.0,
-                    "day_gamma": 1.0,
-                    "night_brightness": 1.0,
-                    "night_gamma": 0.8
+                    "time_format": "%d/%m %H:%M"
                 }
             ],
             "formatting": [
