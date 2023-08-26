@@ -29,8 +29,10 @@ monitor = read_configuration(conf, "i3blocks", 0, "system", 0, "monitor")
 day = read_configuration(conf, "i3blocks", 0, "time", 0, "day")
 night = read_configuration(conf, "i3blocks", 0, "time", 0, "night")
 time_format = read_configuration(conf, "i3blocks", 0, "time", 0, "time_format")
-adjust_glare = read_configuration(conf, "i3blocks", 0, "time", 0, "adjust_glare")
-day_brightness = read_configuration(conf, "i3blocks", 0, "time", 0, "day_brightness")
+adjust_glare = read_configuration(
+    conf, "i3blocks", 0, "time", 0, "adjust_glare")
+day_brightness = read_configuration(
+    conf, "i3blocks", 0, "time", 0, "day_brightness")
 day_gamma = read_configuration(conf, "i3blocks", 0, "time", 0, "day_gamma")
 night_brightness = read_configuration(
     conf, "i3blocks", 0, "time", 0, "night_brightness"
@@ -52,7 +54,8 @@ device_active_high = read_configuration(
 # function to get gamma/brightness level from xrandr
 def get_level(level):
     command = f"xrandr --verbose | grep {level}"
-    output = subprocess.check_output(command, shell=True, universal_newlines=True)
+    output = subprocess.check_output(
+        command, shell=True, universal_newlines=True)
 
     lines = output.split("\n")
     for line in lines:

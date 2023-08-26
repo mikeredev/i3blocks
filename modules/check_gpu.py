@@ -22,12 +22,15 @@ except:
 # load configuration file
 conf = load_configuration()
 color_ok = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_ok")
-color_warn = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_warn")
-color_nok = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_nok")
+color_warn = read_configuration(
+    conf, "i3blocks", 0, "formatting", 0, "color_warn")
+color_nok = read_configuration(
+    conf, "i3blocks", 0, "formatting", 0, "color_nok")
 
 # load check specifics from configuration file
 gpu_type = read_configuration(conf, "i3blocks", 0, "gpu", 0, "gpu_type")
-gpu_temp_unit = read_configuration(conf, "i3blocks", 0, "gpu", 0, "gpu_temp_unit")
+gpu_temp_unit = read_configuration(
+    conf, "i3blocks", 0, "gpu", 0, "gpu_temp_unit")
 
 
 # function to return GPU temperature
@@ -52,7 +55,8 @@ def get_gpu_vram_utilized(gpu_type):
         proc_vram_utilization = subprocess.Popen(
             cmd_vram_utilization, shell=True, stdout=subprocess.PIPE
         )
-        output_vram_utilization = proc_vram_utilization.communicate()[0].decode()
+        output_vram_utilization = proc_vram_utilization.communicate()[
+            0].decode()
         proc_vram_utilization.stdout.close()
     else:
         print(f"GPU [{gpu_type}] not supported")
@@ -91,6 +95,6 @@ def i3blocks_check(warning, critical):
 
     # print output
     print(
-        #f"{gpu_vram_utilized} {gpu_temperature}{gpu_temp_unit} <span font='FontAwesome' foreground='{color}'>{icon}</span>"
+        # f"{gpu_vram_utilized} {gpu_temperature}{gpu_temp_unit} <span font='FontAwesome' foreground='{color}'>{icon}</span>"
         f"{gpu_vram_utilized} \uf080 <span font='FontAwesome' foreground='{color}'>{icon}</span>"
     )

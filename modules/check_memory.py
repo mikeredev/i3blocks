@@ -22,8 +22,10 @@ except:
 # load configuration file
 conf = load_configuration()
 color_ok = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_ok")
-color_warn = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_warn")
-color_nok = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_nok")
+color_warn = read_configuration(
+    conf, "i3blocks", 0, "formatting", 0, "color_warn")
+color_nok = read_configuration(
+    conf, "i3blocks", 0, "formatting", 0, "color_nok")
 
 
 # i3blocks_check function called by i3blocks.py

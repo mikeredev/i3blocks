@@ -14,6 +14,7 @@ try:
         load_configuration,
         read_configuration,
         perform_check,
+        handle_click,
     )
 except:
     print(f"Failed to load custom modules. Call this script via i3blocks.py only.")
@@ -22,13 +23,18 @@ except:
 # load configuration file
 conf = load_configuration()
 color_ok = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_ok")
-color_warn = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_warn")
-color_nok = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_nok")
+color_warn = read_configuration(
+    conf, "i3blocks", 0, "formatting", 0, "color_warn")
+color_nok = read_configuration(
+    conf, "i3blocks", 0, "formatting", 0, "color_nok")
 
 # load device status colors
 device_disabled = read_configuration(
     conf, "i3blocks", 0, "formatting", 0, "device_disabled"
 )
+
+# load click handler
+handle_click("check_wifi", 0)
 
 
 # i3blocks_check function called by i3blocks.py
@@ -42,7 +48,8 @@ def i3blocks_check(warning, critical):
     proc_signal_strength.stdout.close()
 
     lines = output_signal_strength.decode().strip().split("\n")
-    signal_strength = next((line.split()[0] for line in lines if "*" in line), None)
+    signal_strength = next((line.split()[0]
+                           for line in lines if "*" in line), None)
 
     # compare results to thresholds
     if signal_strength is not None:
@@ -66,4 +73,5 @@ def i3blocks_check(warning, critical):
 
     # or print inactive icon
     else:
-        print(f"<span font='FontAwesome' foreground='{device_disabled}'>\uf1eb</span>")
+        print(
+            f"<span font='FontAwesome' foreground='{device_disabled}'>\uf1eb</span>")

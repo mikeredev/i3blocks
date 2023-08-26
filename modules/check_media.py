@@ -16,6 +16,7 @@ try:
         load_configuration,
         read_configuration,
         perform_check,
+        handle_click,
     )
 
     sys.path.append(
@@ -29,12 +30,15 @@ except:
 # load configuration file
 conf = load_configuration()
 color_ok = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_ok")
-color_warn = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_warn")
-color_nok = read_configuration(conf, "i3blocks", 0, "formatting", 0, "color_nok")
+color_warn = read_configuration(
+    conf, "i3blocks", 0, "formatting", 0, "color_warn")
+color_nok = read_configuration(
+    conf, "i3blocks", 0, "formatting", 0, "color_nok")
 
 # load check specifics from configuration file
 audio_sink = read_configuration(conf, "i3blocks", 0, "system", 0, "audio_sink")
-microphone = read_configuration(conf, "i3blocks", 0, "devices", 0, "microphone")
+microphone = read_configuration(
+    conf, "i3blocks", 0, "devices", 0, "microphone")
 webcam = read_configuration(conf, "i3blocks", 0, "devices", 0, "webcam")
 bluetooth = read_configuration(conf, "i3blocks", 0, "devices", 0, "bluetooth")
 
@@ -42,6 +46,10 @@ bluetooth = read_configuration(conf, "i3blocks", 0, "devices", 0, "bluetooth")
 device_inactive = read_configuration(
     conf, "i3blocks", 0, "formatting", 0, "device_inactive"
 )
+
+
+# load click handler
+handle_click("check_media", 0)
 
 
 def get_audio_status(sink_name):

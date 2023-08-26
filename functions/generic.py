@@ -27,6 +27,32 @@ def read_configuration(data, *keys):
     return result
 
 
+# function to handle clicks
+def handle_click(module, button):
+    import os
+    import subprocess
+
+    # Define the button actions for each module
+    module_actions = {
+        "check_media": {
+            2: "pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+1 i3blocks",
+            4: "pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+1 i3blocks",
+            5: "pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+1 i3blocks"
+        },
+        "check_wifi": {
+            2: "sh -c 'python ~/data/scripts/system-tools/wifi-manager-rofi.py'"
+        }
+    }
+
+    button = int(os.getenv("BLOCK_BUTTON", "0"))
+
+    if module in module_actions:
+        actions = module_actions[module]
+        action = actions.get(button)
+        if action:
+            subprocess.run(action, shell=True)
+
+
 # function to compare warning and critical values and return results
 def perform_check(
     value,
@@ -48,10 +74,12 @@ def perform_check(
 
     converted_value = float(value) if datatype == "float" else int(value)
     converted_warning = (
-        float(warning_threshold) if datatype == "float" else int(warning_threshold)
+        float(warning_threshold) if datatype == "float" else int(
+            warning_threshold)
     )
     converted_critical = (
-        float(critical_threshold) if datatype == "float" else int(critical_threshold)
+        float(critical_threshold) if datatype == "float" else int(
+            critical_threshold)
     )
 
     if compare == "gt":
