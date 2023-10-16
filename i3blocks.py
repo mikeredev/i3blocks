@@ -41,7 +41,8 @@ def main():
     parser.add_argument("--warning", type=float, help="warning threshold")
     parser.add_argument("--critical", type=float, help="critical threshold")
     parser.add_argument("--compare", choices=["lt", "gt"], help="comparison")
-    parser.add_argument("--datatype", choices=["int", "float"], help="int or float")
+    parser.add_argument(
+        "--datatype", choices=["int", "float"], help="int or float")
     args = parser.parse_args()
 
     # remove the try/catch if debugging

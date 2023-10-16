@@ -19,8 +19,6 @@ GPUs supported: `nvidia`
 
 Fans supported: `nvidia` `asus-nb-wmi`
 
-Toggle `time:adjust_glare` to disable brightness/gamma changes on day/night
-
 #### i3blocks.conf
 Add or remove entries as needed
 

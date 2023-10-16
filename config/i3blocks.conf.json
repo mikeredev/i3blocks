@@ -15,7 +15,7 @@
             ],
             "perf": [
                 {
-                    "fan_present": false,
+                    "fan_present": true,
                     "fan_type": "nvidia"
                 }
             ],
@@ -28,9 +28,7 @@
             ],
             "time": [
                 {
-                    "day": 6,
-                    "night": 20,
-                    "time_format": "%d/%m %H:%M"
+                    "time_format": "%a%d %H:%M"
                 }
             ],
             "formatting": [
