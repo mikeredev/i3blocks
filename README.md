@@ -21,14 +21,15 @@
 
 ## Installation
 - Copy or clone this repository as `$HOME/.config/i3blocks`
-- Make the `i3blocks.py` executable via `chmod +x ~/.config/i3blocks/i3blocks.py`
-- Start via i3 `bar { status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf }`
+- Make `i3blocks.py` executable via `chmod +x ~/.config/i3blocks/i3blocks.py`
+- Start via i3 `bar {status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf}`
 
 ## BLOCK_BUTTON signals
 `1 volume`
 `3 wifi`
 
 Custom actions can be defined in `functions/block_button.py`
+Bind hotkeys for e.g., volume control actions in i3 config using `pkill -RTMIN+$SIGNAL i3blocks`
 
 ## Configuring thresholds
 Define `warning` and `critical` in `i3blocks.conf`, for example:
