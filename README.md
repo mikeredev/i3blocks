@@ -30,6 +30,7 @@
 
 - Custom actions can be defined in `functions/block_button.py`
 - Bind hotkeys in i3 appending  `pkill -RTMIN+[SIGNAL] i3blocks` to the command to update the block value, e.g., where volume is signal 1 use `bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && exec pkill -RTMIN+1 i3blocks`
+- Signals must be defined in the appropriate `i3blocks.conf` section
 
 ## Configuring thresholds
 Define `warning` and `critical` in `i3blocks.conf`, for example:
