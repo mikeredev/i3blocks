@@ -11,6 +11,14 @@
 `nvidia`
 `psutil`
 
+## Blocks
+`time`
+`GPU VRAM% util, fan speed, temperature`
+`CPU 1min load average%`
+`memory`
+`wireless signal`
+`volume control`
+
 ## Installation
 - Copy or clone this repository as `$HOME/.config/i3blocks`
 - Make the control script executable via `chmod +x ~/.config/i3blocks/i3blocks.py`
