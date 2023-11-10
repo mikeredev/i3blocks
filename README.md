@@ -28,8 +28,8 @@
 `1 volume`
 `3 wifi`
 
-Custom actions can be defined in `functions/block_button.py`
-Bind hotkeys for e.g., volume control actions in i3 config using `pkill -RTMIN+$SIGNAL i3blocks`
+- Custom actions can be defined in `functions/block_button.py`
+- Bind hotkeys in i3 appending  `pkill -RTMIN+$SIGNAL i3blocks` to the command to update the block value, e.g., where volume is signal 1 use `bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && exec pkill -RTMIN+1 i3blocks`
 
 ## Configuring thresholds
 Define `warning` and `critical` in `i3blocks.conf`, for example:
@@ -51,3 +51,5 @@ command=~/.config/i3blocks/i3blocks.py --check gpu --warning 70 --critical 80
 
 ## More info
 - Config files for i3, dunst, etc., may be found in [dotfiles](https://github.com/mikeredev/dotfiles) repo
+- [i3blocks documentation](https://vivien.github.io/i3blocks)
+- [vivien/i3blocks](https://github.com/vivien/i3blocks)
