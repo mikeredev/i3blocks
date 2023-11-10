@@ -46,3 +46,6 @@ command=~/.config/i3blocks/i3blocks.py --check gpu --warning 70 --critical 80
 - This function should be presented with an int or float to check against
 - The function should output the result in the desired format and/or perform additional actions on check completion
 - Define the blocks and configure the alert thresholds in `i3blocks.conf`
+
+## More info
+- dunst config, etc., may be found in [dotfiles](https://github.com/mikeredev/dotfiles) repo
