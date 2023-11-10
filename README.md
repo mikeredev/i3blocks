@@ -26,8 +26,9 @@
 
 ## BLOCK_BUTTON signals
 `1 volume`
-`2 ethernet`
 `3 wifi`
+
+Custom actions can be defined in `functions/block_button.py`
 
 ## Configuring thresholds
 Define `warning` and `critical` in `i3blocks.conf`, for example:
