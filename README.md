@@ -41,6 +41,6 @@ command=~/.config/i3blocks/i3blocks.py --check gpu --warning 70 --critical 80
 
 ## Creating new blocks
 - Store new modules in `modules` as `check_$BLOCK.py`
-- Add it to the modules list in `i3blocks.py` in format `$BLOCK = check_$block`
+- Add it to the modules list in `i3blocks.py` in format `$BLOCK = check_$BLOCK`
 - The script module should have a function `i3blocks_check(warning,critical)` that performs check logic and displays colored output and/or performs actions
 - Define the blocks and the monitored thresholds in `i3blocks.conf`
