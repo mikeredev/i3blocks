@@ -49,4 +49,4 @@ command=~/.config/i3blocks/i3blocks.py --check gpu --warning 70 --critical 80
 - Define the blocks and configure the alert thresholds in `i3blocks.conf`
 
 ## More info
-- dunst config, etc., may be found in [dotfiles](https://github.com/mikeredev/dotfiles) repo
+- Config files for i3, dunst, etc., may be found in [dotfiles](https://github.com/mikeredev/dotfiles) repo
