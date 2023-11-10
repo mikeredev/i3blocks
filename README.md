@@ -1,10 +1,10 @@
 # i3blocks
 
-## Description
-A lightweight i3blocks configuration with simple `OK` `WARN` `NOK` alerting
-
 ## Example
 ![image](https://github.com/mikeredev/i3blocks/assets/132297919/e029ff01-dd68-4b3c-8629-259a52da41d0)
+
+## Description
+A lightweight i3blocks configuration with simple `OK` `WARN` `NOK` alerting
 
 ## Requirements
 `alsa-utils`
