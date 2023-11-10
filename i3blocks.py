@@ -4,7 +4,7 @@
 import argparse
 from importlib import import_module
 
-# define checks
+# define checks and corresponding modules
 i3blocks = {
     "load": "check_load",
     "memory": "check_memory",
