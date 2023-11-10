@@ -21,7 +21,7 @@
 
 ## Installation
 - Copy or clone this repository as `$HOME/.config/i3blocks`
-- Make the control script executable via `chmod +x ~/.config/i3blocks/i3blocks.py`
+- Make the `i3blocks.py` executable via `chmod +x ~/.config/i3blocks/i3blocks.py`
 - Start via i3 `bar { status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf }`
 
 ## BLOCK_BUTTON signals
