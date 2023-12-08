@@ -16,6 +16,6 @@ audio_status = run(cmd_audio_status)
 
 # check and display output
 def i3blocks_check(warning,critical):
-    icon = "\uf6a9" if audio_status=="[off]" else ("\uf028" if volume_level >=80 else "\uf027" if volume_level >=10 else "\uf026")
-    status_color = "#444444" if audio_status=="[off]" else ("#FB4934" if volume_level >= int(critical) else "#FABD2F" if volume_level >= int(warning) else "#FFFFFF")
+    icon = "\uf6a9" if audio_status=="[off]" else ("\uf028" if volume_level >=70 else "\uf027" if volume_level >=10 else "\uf026")
+    status_color = "#666666" if audio_status=="[off]" else ("red" if volume_level >= int(critical) else "orange" if volume_level >= int(warning) else "white")
     print(f"{volume_level}% <span color='{status_color}'>{icon}</span>")

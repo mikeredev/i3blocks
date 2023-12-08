@@ -14,7 +14,7 @@ fan_speed= int(run(cmd_fan_speed))
 
 # check and display output
 def i3blocks_check(warning, critical):
-    icon = "\uf2c7" if gpu_temp >=60 else "\uf2cb" # fontawesome thermometer icons
-    status_color = "#FB4934" if gpu_temp >= int(critical) else ("#FABD2F" if gpu_temp >= int(warning) else "#FFFFFF")
-    fan_color = "#FFFFFF" if fan_speed >= 40 else ("#A9A9A9" if fan_speed >= 20 else "#666666")
+    icon = "\uf2c7" if gpu_temp >=60 else "\uf2cb"
+    status_color = "red" if gpu_temp >= int(critical) else ("orange" if gpu_temp >= int(warning) else "white")
+    fan_color = "white" if fan_speed >= 40 else ("darkgrey" if fan_speed >= 20 else "#666666" if fan_speed >0 else "#444444")
     print(f"{vram_util}% <span color='{fan_color}'>\uf863</span> <span color='{status_color}'>{icon}</span>")

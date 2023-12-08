@@ -17,5 +17,5 @@ except:
 
 # check and display output
 def i3blocks_check(warning,critical):
-    status_color = "#444444" if wifi_signal == 0 else ("#FB4934" if wifi_signal <= int(critical) else "#FABD2F" if wifi_signal <= int(warning) else "#FFFFFF")
+    status_color = "#444444" if wifi_signal == 0 else ("red" if wifi_signal <= int(critical) else "orange" if wifi_signal <= int(warning) else "white")
     print(f"{wifi_signal}% <span color='{status_color}'>\uf1eb</span>")

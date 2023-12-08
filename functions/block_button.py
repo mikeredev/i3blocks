@@ -15,7 +15,7 @@ def block_button(module, button):
             5: "pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+1 i3blocks"
         },
         "check_wifi": {
-            2: "sh -c 'python ~/.config/scripts/rofi/manage-wifi.py'"
+            2: "sh -c '~/.config/scripts/tools/connect-wifi.sh'"
         }
     }
 

@@ -9,5 +9,5 @@ cpu_load = round(load_avg[0] / total_cores, 1)
 
 # check and display output
 def i3blocks_check(warning,critical):
-    status_color = "#FB4934" if cpu_load >= float(critical) else ("#FABD2F" if cpu_load >= float(warning) else "#FFFFFF")
+    status_color = "red" if cpu_load >= float(critical) else ("orange" if cpu_load >= float(warning) else "white")
     print(f"{cpu_load} <span color='{status_color}'>\uf3fd</span>")
