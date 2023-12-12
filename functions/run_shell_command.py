@@ -1,4 +1,4 @@
-# import required modules
+# import required functions/modules
 import subprocess
 
 

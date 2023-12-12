@@ -4,15 +4,15 @@
 import argparse
 from importlib import import_module
 
-# define a dictionary mapping i3blocks indicators to their corresponding module names
+# define a dictionary mapping i3blocks indicators to their corresponding modules in i3blocks.conf
 i3blocks = {
-    "gpu": "check_gpu",
-    "load": "check_load",
-    "memory": "check_memory",
-    "time": "check_time",
-    "volume": "check_volume",
-    "wifi": "check_wifi"
+    "gpu":      "check_gpu",
+    "load":     "check_load",
+    "memory":   "check_memory",
+    "volume":   "check_volume",
+    "wifi":     "check_wifi"
 }
+
 
 # define the main function for handling command-line arguments and invoking module checks
 def main():
@@ -31,6 +31,6 @@ def main():
     check_module = import_module(f"modules.{i3blocks[args.check]}")
     check_module.i3blocks_check(args.warning, args.critical)
 
-# entry point to the script
+# main entry point to the script
 if __name__ == "__main__":
     main()
