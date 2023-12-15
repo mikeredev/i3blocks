@@ -1,5 +1,5 @@
 # import required functions/modules
-from colors import colors
+from styles import styles
 from functions.run_shell_command import run_shell_command as run
 from functions.block_button import block_button
 
@@ -22,9 +22,9 @@ def i3blocks_check(warning, critical):
     "\uf027" if volume_level >=10 else              # volume-low
     "\uf026")                                       # volume-off
 
-    status_color =  f"{colors.INACTIVE}" if audio_status=="[off]" else (
-                    f"{colors.NOK}" if volume_level >= int(critical) else
-                    f"{colors.WARN}" if volume_level >= int(warning) else
-                    f"{colors.OK}")
+    status_color =  f"{styles.INACTIVE}" if audio_status=="[off]" else (
+                    f"{styles.NOK}" if volume_level >= int(critical) else
+                    f"{styles.WARN}" if volume_level >= int(warning) else
+                    f"{styles.OK}")
     
-    print(f"{volume_level}% <span color='{status_color}'>{icon}</span>")
+    print(f"<span font='{styles.FONT}'>{volume_level}%</span> <span font='{styles.GLYPHS}' color='{status_color}'>{icon}</span>")

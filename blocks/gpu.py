@@ -1,5 +1,5 @@
 # import required functions/modules
-from colors import colors
+from styles import styles
 from functions.run_shell_command import run_shell_command as run
 from functions.block_button import block_button
 
@@ -25,13 +25,13 @@ def i3blocks_check(warning, critical):
     "\uf2ca" if gpu_temp > 20 else          # temperature-quarter
     "\uf2cb" )                              # temperature-empty
 
-    status_color =  f"{colors.NOK}" if gpu_temp >= int(critical) else (
-                    f"{colors.WARN}" if gpu_temp >= int(warning) else 
-                    f"{colors.OK}")
+    status_color =  f"{styles.NOK}" if gpu_temp >= int(critical) else (
+                    f"{styles.WARN}" if gpu_temp >= int(warning) else 
+                    f"{styles.OK}")
 
-    fan_color =     f"{colors.OK}" if fan_speed >= 40 else (
-                    f"{colors.ACTIVE}" if fan_speed >= 20 else 
-                    f"{colors.INACTIVE}" if fan_speed > 0 else 
-                    f"{colors.NONE}")
+    fan_color =     f"{styles.OK}" if fan_speed >= 40 else (
+                    f"{styles.ACTIVE}" if fan_speed >= 20 else 
+                    f"{styles.INACTIVE}" if fan_speed > 0 else 
+                    f"{styles.NONE}")
     
-    print(f"{vram_util}% <span color='{fan_color}'>\uf863</span> <span color='{status_color}'>{icon}</span>")
+    print(f"<span font='{styles.FONT}'>{vram_util}%</span> <span font='{styles.GLYPHS}'><span color='{fan_color}'>\uf863</span> <span color='{status_color}'>{icon}</span></span>")

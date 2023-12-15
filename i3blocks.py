@@ -6,11 +6,12 @@ from importlib import import_module
 
 # define a dictionary mapping i3blocks indicators to their corresponding modules in i3blocks.conf
 i3blocks = {
-    "gpu":      "check_gpu",
-    "load":     "check_load",
-    "memory":   "check_memory",
-    "volume":   "check_volume",
-    "wifi":     "check_wifi"
+    "gpu":      "gpu",
+    "load":     "load",
+    "memory":   "memory",
+    "time":     "time",
+    "volume":   "volume",
+    "wifi":     "wifi"
 }
 
 
@@ -28,7 +29,7 @@ def main():
     args = parser.parse_args()
 
     # import the module dynamically based on the specified check and invoke its i3blocks_check function
-    check_module = import_module(f"modules.{i3blocks[args.check]}")
+    check_module = import_module(f"blocks.{i3blocks[args.check]}")
     check_module.i3blocks_check(args.warning, args.critical)
 
 # main entry point to the script

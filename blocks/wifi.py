@@ -1,5 +1,5 @@
 # import required functions/modules
-from colors import colors
+from styles import styles
 from functions.run_shell_command import run_shell_command as run
 from functions.block_button import block_button
 
@@ -18,9 +18,9 @@ except:
 
 # i3blocks_check function called by i3blocks.py
 def i3blocks_check(warning, critical):
-    status_color =  f"{colors.NONE}" if wifi_signal == 0 else (
-                    f"{colors.NOK}" if wifi_signal <= int(critical) else
-                    f"{colors.WARN}" if wifi_signal <= int(warning) else
-                    f"{colors.OK}")
+    status_color =  f"{styles.NONE}" if wifi_signal == 0 else (
+                    f"{styles.NOK}" if wifi_signal <= int(critical) else
+                    f"{styles.WARN}" if wifi_signal <= int(warning) else
+                    f"{styles.OK}")
         
-    print(f"{wifi_signal}% <span color='{status_color}'>\uf1eb</span>")
+    print(f"<span font='{styles.FONT}'>{wifi_signal}%</span> <span font='{styles.GLYPHS}' color='{status_color}'>\uf1eb</span>")

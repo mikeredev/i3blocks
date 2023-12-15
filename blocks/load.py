@@ -1,6 +1,6 @@
 # import required functions/modules
 import os
-from colors import colors
+from styles import styles
 from functions.block_button import block_button
 
 # load mouse button click handler
@@ -14,8 +14,8 @@ cpu_load        = round(load_avg[0] / total_cores, 1)
 
 # i3blocks_check function called by i3blocks.py
 def i3blocks_check(warning, critical):
-    status_color =  f"{colors.NOK}" if cpu_load >= float(critical) else (
-                    f"{colors.WARN}" if cpu_load >= float(warning) else 
-                    f"{colors.OK}")
+    status_color =  f"{styles.NOK}" if cpu_load >= float(critical) else (
+                    f"{styles.WARN}" if cpu_load >= float(warning) else 
+                    f"{styles.OK}")
 
-    print(f"{cpu_load} <span color='{status_color}'>\uf625</span>")
+    print(f"<span font='{styles.FONT}'>{cpu_load}</span> <span font='{styles.GLYPHS}' color='{status_color}'>\uf625</span>")
