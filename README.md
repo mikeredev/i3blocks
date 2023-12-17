@@ -1,10 +1,13 @@
 # examples
 simple
 ![i3blocks-simple](https://github.com/mikeredev/i3blocks/assets/132297919/a2a04c39-b7a0-4a10-9994-44908535ea6e)
+
 rounded
 ![i3blocks-rounded](https://github.com/mikeredev/i3blocks/assets/132297919/e379d6ea-b767-4402-95d1-0bba1b08a5c0)
+
 angles
 ![i3blocks-angles](https://github.com/mikeredev/i3blocks/assets/132297919/e9de35f5-a6c5-4391-b79f-d344154ee315)
+
 powerline
 ![i3blocks-powerline](https://github.com/mikeredev/i3blocks/assets/132297919/38a18e92-6ce3-46f7-bc53-75a674739b3c)
 
