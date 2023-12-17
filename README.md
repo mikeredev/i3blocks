@@ -1,6 +1,7 @@
 # example
 
 ![i3blocks](https://github.com/mikeredev/i3blocks/assets/132297919/a8d4ae9d-fe07-4340-a9ea-429ef47a2a42)
+![i3blocks-rounded](https://github.com/mikeredev/i3blocks/assets/132297919/c41b533d-40a7-41ee-86a7-511bdcd350ec)
 
 # description
 a lightweight i3blocks python implementation with stylised blocks and visual `OK` `WARN` `NOK` alerting
@@ -62,3 +63,4 @@ command=~/.config/i3blocks/i3blocks --check $BLOCK_NAME --warning 70 --critical 
 - any custom scripts attached here can probably be found in [dotfiles/scripts/tools/](https://github.com/mikeredev/dotfiles/tree/main/scripts/tools)
 - [i3blocks documentation](https://vivien.github.io/i3blocks)
 - [vivien/i3blocks](https://github.com/vivien/i3blocks)
+
