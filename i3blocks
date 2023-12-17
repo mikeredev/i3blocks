@@ -29,7 +29,7 @@ def main():
     args = parser.parse_args()
 
     # import the module dynamically based on the specified check and invoke its i3blocks_check function
-    check_module = import_module(f"blocks.{i3blocks[args.check]}")
+    check_module = import_module(f"blocklets.{i3blocks[args.check]}")
     check_module.i3blocks_check(args.warning, args.critical)
 
 # main entry point to the script
