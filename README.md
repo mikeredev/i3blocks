@@ -1,4 +1,4 @@
-# example
+# examples
 ![i3blocks-angles](https://github.com/mikeredev/i3blocks/assets/132297919/a8d4ae9d-fe07-4340-a9ea-429ef47a2a42)
 ![i3blocks-rounded](https://github.com/mikeredev/i3blocks/assets/132297919/c41b533d-40a7-41ee-86a7-511bdcd350ec)
 
@@ -16,9 +16,8 @@ a lightweight i3blocks python implementation with stylised blocks and visual `OK
 
 
 # installation
-update your i3 config to start the bar with the new i3blocks configuration file:
-`bar {status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf}`
-
+- update your i3 config to start the bar with the new i3blocks configuration file: `bar { status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf }`
+- clone or download this repo into `~/.config/i3blocks`, and get the default fonts
 ```bash
 sudo pacman -S python-psutil ttf-font-awesome ttf-inconsolata-nerd
 cd ~/.config
