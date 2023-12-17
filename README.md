@@ -22,7 +22,7 @@ bar {status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf}
 cd ~/.config
 git clone https://github.com/mikeredev/i3blocks.git
 cd i3blocks
-sudo pacman -s psutil ttf-font-awesome ttf-inconsolata-nerd
+sudo pacman -S psutil ttf-font-awesome ttf-inconsolata-nerd
 i3-msg restart
 ```
 
