@@ -1,7 +1,7 @@
 # i3blocks
 
 ## example
-![image](https://github.com/mikeredev/i3blocks/assets/132297919/e029ff01-dd68-4b3c-8629-259a52da41d0)
+![i3blocks](https://github.com/mikeredev/i3blocks/assets/132297919/a8d4ae9d-fe07-4340-a9ea-429ef47a2a42)
 
 # description
 a lightweight i3blocks python implementation with stylised blocks and visual `OK` `WARN` `NOK` alerting
