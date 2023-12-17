@@ -1,6 +1,6 @@
 # example
 
-![i3blocks](https://github.com/mikeredev/i3blocks/assets/132297919/a8d4ae9d-fe07-4340-a9ea-429ef47a2a42)
+![i3blocks-angles](https://github.com/mikeredev/i3blocks/assets/132297919/a8d4ae9d-fe07-4340-a9ea-429ef47a2a42)
 ![i3blocks-rounded](https://github.com/mikeredev/i3blocks/assets/132297919/c41b533d-40a7-41ee-86a7-511bdcd350ec)
 
 # description
@@ -14,15 +14,13 @@ a lightweight i3blocks python implementation with stylised blocks and visual `OK
 
 # installation
 update your i3 config to start the bar with the new i3blocks configuration file:
-`
-bar {status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf}
-`
+`bar {status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf}`
 
-```
+```bash
 cd ~/.config
 git clone https://github.com/mikeredev/i3blocks.git
 cd i3blocks
-sudo pacman -S psutil ttf-font-awesome ttf-inconsolata-nerd
+sudo pacman -S python-psutil ttf-font-awesome ttf-inconsolata-nerd
 i3-msg restart
 ```
 
@@ -37,7 +35,8 @@ i3-msg restart
 
 # configuring thresholds
 - define `warning` and `critical` inside `i3blocks.conf`, for example:
-```
+
+```conf
 [load]
 command=~/.config/i3blocks/i3blocks --check $BLOCK_NAME --warning 0.7 --critical 1.0
 
