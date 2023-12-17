@@ -1,15 +1,11 @@
 # examples
-simple
-![i3blocks-simple](https://github.com/mikeredev/i3blocks/assets/132297919/a2a04c39-b7a0-4a10-9994-44908535ea6e)
 
-rounded
-![i3blocks-rounded](https://github.com/mikeredev/i3blocks/assets/132297919/e379d6ea-b767-4402-95d1-0bba1b08a5c0)
-
-angles
-![i3blocks-angles](https://github.com/mikeredev/i3blocks/assets/132297919/e9de35f5-a6c5-4391-b79f-d344154ee315)
-
-powerline
-![i3blocks-powerline](https://github.com/mikeredev/i3blocks/assets/132297919/38a18e92-6ce3-46f7-bc53-75a674739b3c)
+| style | example |
+|:------|:--------|
+| simple | ![i3blocks-simple](https://github.com/mikeredev/i3blocks/assets/132297919/a2a04c39-b7a0-4a10-9994-44908535ea6e) |
+| rounded | ![i3blocks-rounded](https://github.com/mikeredev/i3blocks/assets/132297919/e379d6ea-b767-4402-95d1-0bba1b08a5c0) |
+| angles | ![i3blocks-angles](https://github.com/mikeredev/i3blocks/assets/132297919/e9de35f5-a6c5-4391-b79f-d344154ee315) |
+| powerline | ![i3blocks-powerline](https://github.com/mikeredev/i3blocks/assets/132297919/38a18e92-6ce3-46f7-bc53-75a674739b3c) |
 
 
 # description
@@ -81,4 +77,3 @@ command=~/.config/i3blocks/i3blocks --check $BLOCK_NAME --warning 70 --critical 
 - any custom scripts attached here can probably be found in [dotfiles/scripts/tools/](https://github.com/mikeredev/dotfiles/tree/main/scripts/tools)
 - [i3blocks documentation](https://vivien.github.io/i3blocks)
 - [vivien/i3blocks](https://github.com/vivien/i3blocks)
-
