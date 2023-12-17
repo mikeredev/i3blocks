@@ -1,37 +1,38 @@
 # example
-
 ![i3blocks-angles](https://github.com/mikeredev/i3blocks/assets/132297919/a8d4ae9d-fe07-4340-a9ea-429ef47a2a42)
 ![i3blocks-rounded](https://github.com/mikeredev/i3blocks/assets/132297919/c41b533d-40a7-41ee-86a7-511bdcd350ec)
+
 
 # description
 a lightweight i3blocks python implementation with stylised blocks and visual `OK` `WARN` `NOK` alerting
 
+
 # toolset
 `alsa-utils` `nmcli` `nvidia` 
 
+
 # blocks
 `volume` `wireless` `memory` `cpu load` `gpu` `time` 
+
 
 # installation
 update your i3 config to start the bar with the new i3blocks configuration file:
 `bar {status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf}`
 
 ```bash
+sudo pacman -S python-psutil ttf-font-awesome ttf-inconsolata-nerd
 cd ~/.config
 git clone https://github.com/mikeredev/i3blocks.git
-cd i3blocks
-sudo pacman -S python-psutil ttf-font-awesome ttf-inconsolata-nerd
 i3-msg restart
 ```
 
+
 # signals
 `1 volume` `2 ethernet` `3 wifi`
-
 - custom actions can be defined in `functions/block_button.py`
-
 - bind hotkeys in i3 appending  `pkill -RTMIN+[SIGNAL] i3blocks` to the command to update the block value, e.g., where volume is signal 1 use `bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && exec pkill -RTMIN+1 i3blocks`
-
 - signals must be defined in the appropriate `i3blocks.conf` section
+
 
 # configuring thresholds
 - define `warning` and `critical` inside `i3blocks.conf`, for example:
@@ -44,6 +45,7 @@ command=~/.config/i3blocks/i3blocks --check $BLOCK_NAME --warning 0.7 --critical
 command=~/.config/i3blocks/i3blocks --check $BLOCK_NAME --warning 70 --critical 80
 ```
 
+
 # creating new blocks
 - store new modules in `blocks` as `$BLOCK_NAME.py`
 - update dictionary in `i3blocks` python script, format `$BLOCK_NAME = $module_filename`
@@ -52,10 +54,12 @@ command=~/.config/i3blocks/i3blocks --check $BLOCK_NAME --warning 70 --critical 
 - the function should output the result in the desired format and/or perform additional actions on check completion
 - define the blocks and configure the alert thresholds in `i3blocks.conf`
 
+
 # styling
 - use the config file to configure glyphs (e.g., circle for rounded blocks)
 - fonts and colours are defined in `styles/styles.py`
 - default fonts are listed above, download these or change the config to your preferred font
+
 
 # more info
 - config files for i3, dunst, etc., may be found in [dotfiles](https://github.com/mikeredev/dotfiles) repo
