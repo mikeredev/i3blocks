@@ -1,4 +1,4 @@
-# i3blocks
+# example
 
 ![i3blocks](https://github.com/mikeredev/i3blocks/assets/132297919/a8d4ae9d-fe07-4340-a9ea-429ef47a2a42)
 
