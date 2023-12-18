@@ -17,7 +17,7 @@ a lightweight i3blocks python implementation with stylised blocks and visual `OK
 
 
 # blocks
-`volume` `wireless` `memory` `cpu load` `gpu` `time` 
+`volume` `wifi` `memory` `cpu load` `gpu` `time` 
 
 
 # installation
@@ -27,6 +27,7 @@ a lightweight i3blocks python implementation with stylised blocks and visual `OK
 sudo pacman -S python-psutil ttf-font-awesome ttf-inconsolata-nerd
 cd ~/.config
 git clone https://github.com/mikeredev/i3blocks.git
+chmod +x
 i3-msg restart
 ```
 
