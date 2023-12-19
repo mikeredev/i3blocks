@@ -1,4 +1,4 @@
-# examples
+### examples
 
 | style | example |
 |:------|:--------|
@@ -8,19 +8,19 @@
 | powerline | ![i3blocks-powerline](https://github.com/mikeredev/i3blocks/assets/132297919/38a18e92-6ce3-46f7-bc53-75a674739b3c) |
 
 
-# description
+### description
 a lightweight i3blocks python implementation with stylised blocks and visual `OK` `WARN` `NOK` alerting on returned values
 
 
-# toolset
+### toolset
 `alsa-utils` `nmcli` `nvidia` 
 
 
-# blocks
+### blocks
 `volume` `wifi` `memory` `cpu load` `gpu` `time` 
 
 
-# installation
+### installation
 - update your i3 config to start the bar with the new i3blocks configuration file: `bar { status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf }`
 - clone or download this repo into `~/.config/i3blocks`, and get the default fonts
 ```bash
@@ -32,14 +32,14 @@ i3-msg restart
 ```
 
 
-# signals
+### signals
 `1 volume` `2 ethernet` `3 wifi`
 - custom actions can be defined in `functions/block_button.py`
 - bind hotkeys in i3 appending  `pkill -RTMIN+[SIGNAL] i3blocks` to the command to update the block value, e.g., where volume is signal 1 use `bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && exec pkill -RTMIN+1 i3blocks`
 - signals must be defined in the appropriate `i3blocks.conf` section
 
 
-# configuring thresholds
+### configuring thresholds
 - define `warning` and `critical` alert thresholds in `i3blocks.conf`, for example:
 
 ```conf
@@ -51,7 +51,7 @@ command=~/.config/i3blocks/i3blocks --check $BLOCK_NAME --warning 70 --critical 
 ```
 
 
-# creating new blocks
+### creating new blocks
 - store new modules in `blocks` as `$BLOCK_NAME.py`
 - update dictionary in `i3blocks` python script, format `$BLOCK_NAME = $module_filename`
 - the script module should have a function `i3blocks_check(warning, critical)`
@@ -66,14 +66,14 @@ command=~/.config/i3blocks/i3blocks --check $BLOCK_NAME --warning 70 --critical 
 - update i3blocks.conf to call it via `i3blocks --check updates --warning 50 --critical 100`
 
 
-# styling
+### styling
 - fonts and colours are defined in `styles/styles.py`
 - default fonts are listed above, download these or config your preferred font
 - additional themes are in `styles/themes`
 - select a theme, e.g., powerline, and `cp styles/themes/i3blocks-powerline.conf i3blocks.conf` from the i3blocks directory and restart i3 to update
 
 
-# more info
+### more info
 - config files for i3, dunst, etc., may be found in [dotfiles](https://github.com/mikeredev/dotfiles) repo
 - any custom scripts attached here can probably be found in [dotfiles/scripts/tools/](https://github.com/mikeredev/dotfiles/tree/main/scripts/tools)
 - [i3blocks documentation](https://vivien.github.io/i3blocks)
