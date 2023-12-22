@@ -2,10 +2,11 @@
 
 | style | example |
 |:------|:--------|
-| simple | ![i3blocks-simple](https://github.com/mikeredev/i3blocks/assets/132297919/a2a04c39-b7a0-4a10-9994-44908535ea6e) |
-| rounded | ![i3blocks-rounded](https://github.com/mikeredev/i3blocks/assets/132297919/e379d6ea-b767-4402-95d1-0bba1b08a5c0) |
-| angles | ![i3blocks-angles](https://github.com/mikeredev/i3blocks/assets/132297919/e9de35f5-a6c5-4391-b79f-d344154ee315) |
-| powerline | ![i3blocks-powerline](https://github.com/mikeredev/i3blocks/assets/132297919/38a18e92-6ce3-46f7-bc53-75a674739b3c) |
+| angles | ![i3blocks-angles](https://github.com/mikeredev/i3blocks/assets/132297919/c3232c62-5bde-4546-9f4d-7b9caa777e49) |
+| powerline | ![i3blocks-powerline](https://github.com/mikeredev/i3blocks/assets/132297919/cf44d0ed-4273-49e3-91df-1bd80cdfef8d) |
+| rounded | ![i3blocks-rounded](https://github.com/mikeredev/i3blocks/assets/132297919/4997d82c-99cd-4125-9c50-2eeeb515be3c) |
+| simple | ![i3blocks-simple](https://github.com/mikeredev/i3blocks/assets/132297919/ac8eb95b-fb9f-4cc6-bb77-c4954fa9ac2b) |
+| solid | ![i3blocks-solid](https://github.com/mikeredev/i3blocks/assets/132297919/b7e64fc9-ae3f-4d4e-9b92-0cd6232f5806) |
 
 
 ### description
@@ -27,7 +28,7 @@ a lightweight i3blocks python implementation with stylised blocks and visual `OK
 sudo pacman -S python-psutil ttf-font-awesome ttf-inconsolata-nerd
 cd ~/.config
 git clone https://github.com/mikeredev/i3blocks.git
-chmod +x
+chmod +x i3blocks
 i3-msg restart
 ```
 
