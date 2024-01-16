@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# load colors and fonts
+source "$HOME"/.config/i3blocks/functions && load_style
+
+# load mouse-click actions
+if [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+    alacritty -e htop --sort-key PERCENT_MEM
+fi
+
+# get required values
+total_memory=$(free -m | awk '/^Mem:/ {print $2}')
+used_memory=$(free -m | awk '/^Mem:/ {print $3}')
+memory_util=$((used_memory * 100 / total_memory))
+
+# get status
+get_status_color() {
+    local warning="$1"
+    local critical="$2"
+    if [ "$memory_util" -ge "$critical" ]; then
+        echo $color_nok     # nok
+    elif [ "$memory_util" -ge "$warning" ]; then
+        echo $color_warn    # warn
+    else
+        echo $color_ok      # ok
+    fi
+}
+
+# main function
+i3blocks_check() {
+    local warning="$1"
+    local critical="$2"
+    local status_color=$(get_status_color "$warning" "$critical")
+    printf "%s\n" "<span font='$font_text'>$memory_util% </span><span font='$font_glyphs' color='$status_color'></span>"
+}

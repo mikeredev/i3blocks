@@ -1,0 +1,15 @@
+#!/bin/bash
+
+load_style() {
+    # define the i3blocks.conf file path
+    conf=""$HOME"/.config/i3blocks/i3blocks.conf"
+
+    # read configuration
+    color_ok=$(grep '^color_ok=' "$conf" | cut -d '=' -f2)
+    color_warn=$(grep '^color_warn=' "$conf" | cut -d '=' -f2)
+    color_nok=$(grep '^color_nok=' "$conf" | cut -d '=' -f2)
+    color_inactive=$(grep '^color_inactive=' "$conf" | cut -d '=' -f2)
+    color_none=$(grep '^color_none=' "$conf" | cut -d '=' -f2)
+    font_text=$(grep '^font_text=' "$conf" | cut -d '=' -f2)
+    font_glyphs=$(grep '^font_glyphs=' "$conf" | cut -d '=' -f2)
+}

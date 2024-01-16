@@ -1,0 +1,66 @@
+#!/bin/bash
+# uses: nvidia-utils
+
+# load colors and fonts
+source "$HOME"/.config/i3blocks/functions && load_style
+
+# load mouse-click actions
+if [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+    alacritty -e sh -c 'nvidia-smi; read -p [ok]'
+fi
+
+# get required values
+vram=$(nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits | awk -F',' '{printf "%.0f\n", $1 / $2 * 100}')
+temp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits)
+fan=$(nvidia-smi --query-gpu=fan.speed --format=csv,noheader,nounits)
+
+# get status
+get_status_color() {
+    local warning="$1"
+    local critical="$2"
+    if [ "$temp" -ge "$critical" ]; then
+        echo $color_nok     # nok
+    elif [ "$temp" -ge "$warning" ]; then
+        echo $color_warn    # warn
+    else
+        echo $color_ok      # ok
+    fi
+}
+
+# get fan status
+get_fan_color() {
+    if [ "$fan" -ge 40 ]; then
+        echo $color_ok          # on/high
+    elif [ "$fan" -ge 20 ]; then
+        echo $color_active      # on/normal
+    elif [ "$fan" -gt 0 ]; then
+        echo $color_inactive    # on/low
+    else
+        echo $color_none        # none
+    fi
+}
+
+# get temperature icon
+get_icon() {
+    if [ "$temp" -gt 80 ]; then
+        echo ""    # temperature-full
+    elif [ "$temp" -gt 60 ]; then
+        echo ""    # temperature-three-quarters
+    elif [ "$temp" -gt 40 ]; then
+        echo ""    # temperature-half
+    elif [ "$temp" -gt 20 ]; then
+        echo ""    # temperature-quarter
+    else
+        echo ""    # temperature-empty
+    fi
+}
+
+# main function
+i3blocks_check() {
+    local warning="$1"
+    local critical="$2"
+    local status_color=$(get_status_color "$warning" "$critical")
+    local fan_color=$(get_fan_color)
+    local icon=$(get_icon)
+    printf "%s\n" "<span font='$font_text'>$vram% </span><span font='$font_glyphs'><span color='$fan_color'></span> <span color='$status_color'>$icon</span></span>"
+}

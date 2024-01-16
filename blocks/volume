@@ -1,0 +1,57 @@
+#!/bin/bash
+# uses: pulseaudio alsa-utils
+
+# load colors and fonts
+source "$HOME"/.config/i3blocks/functions && load_style
+
+# load mouse-click actions
+if [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+    pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+1 i3blocks
+elif [[ "${BLOCK_BUTTON}" -eq 4 ]]; then
+    pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+1 i3blocks
+elif [[ "${BLOCK_BUTTON}" -eq 5 ]]; then
+    pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+1 i3blocks
+fi
+
+# get required values
+volume_level=$(amixer -D pulse sget Master | grep -oP '\d+%' | head -n1 | tr -d '%')
+audio_status=$(amixer -D pulse get Master | grep -oP '\[o[nf]*\]' | head -n1)
+
+# get status
+get_status_color() {
+    local warning="$1"
+    local critical="$2"
+    if [ "$volume_level" -ge "$critical" ]; then
+        echo $color_nok         # nok
+    elif [ "$volume_level" -ge "$warning" ]; then
+        echo $color_warn        # warn
+    elif [ "$audio_status" == "[off]" ]; then
+        echo $color_inactive    # inactive
+    elif [ "$audio_status" == "[on]" ]; then
+        echo $color_ok          # normal
+    else
+        echo $color_none        # none
+    fi
+}
+
+# get volume icon
+get_icon() {
+    if [ "$audio_status" == "[off]" ]; then
+        echo ""   # volume-xmark
+    elif [ "$volume_level" -ge 70 ]; then
+        echo ""    # volume-high
+    elif [ "$volume_level" -ge 10 ]; then
+        echo ""    # volume-low
+    else
+        echo ""    # volume-off
+    fi
+}
+
+# main function
+i3blocks_check() {
+    local warning="$1"
+    local critical="$2"
+    local status_color=$(get_status_color "$warning" "$critical")
+    local icon=$(get_icon)
+    printf "%s\n" "<span font='$font_text'>$volume_level% </span><span font='$font_glyphs' color='$status_color'>$icon</span>"
+}

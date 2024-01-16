@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# parse command-line arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --check)
+            check="$2"
+            shift 2
+            ;;
+        --warning)
+            warning="$2"
+            shift 2
+            ;;
+        --critical)
+            critical="$2"
+            shift 2
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
+# check if required arguments are provided
+if [ -z "$check" ]; then
+    echo "Error: --check argument is required."
+    exit 1
+fi
+
+# import the module dynamically and invoke its i3blocks_check function
+check_module=""$HOME"/.config/i3blocks/blocks/$check"
+if [ -f "${check_module}" ]; then
+    source "${check_module}"
+    i3blocks_check "$warning" "$critical"
+else
+    echo "Error: Module '$check_module' not found for check '$check'."
+    exit 1
+fi

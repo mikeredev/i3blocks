@@ -10,11 +10,11 @@
 
 
 ### description
-a lightweight i3blocks python implementation with stylised blocks and visual `OK` `WARN` `NOK` alerting on returned values
+a lightweight i3blocks implementation with stylised blocks and visual `OK` `WARN` `NOK` alerting on returned values
 
 
-### toolset
-`alsa-utils` `nmcli` `nvidia` 
+### uses
+`alsa-utils` `nvidia` `pulseaudio` 
 
 
 ### blocks
@@ -28,50 +28,44 @@ a lightweight i3blocks python implementation with stylised blocks and visual `OK
 sudo pacman -S python-psutil ttf-font-awesome ttf-inconsolata-nerd
 cd ~/.config
 git clone https://github.com/mikeredev/i3blocks.git
-chmod +x i3blocks
+chmod +x control
 i3-msg restart
 ```
 
 
 ### signals
 `1 volume` `2 ethernet` `3 wifi`
-- custom actions can be defined in `functions/block_button.py`
-- bind hotkeys in i3 appending  `pkill -RTMIN+[SIGNAL] i3blocks` to the command to update the block value, e.g., where volume is signal 1 use `bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && exec pkill -RTMIN+1 i3blocks`
-- signals must be defined in the appropriate `i3blocks.conf` section
 
+
+### mouse actions
+`$BLOCK_BUTTON` allows for the following mouse events:
+```
+1: left-click
+2: middle-click
+3: right-click
+4: mouse wheel up
+5: mouse wheel down
+```
 
 ### configuring thresholds
-- define `warning` and `critical` alert thresholds in `i3blocks.conf`, for example:
+- define `warning` and `critical` thresholds directly in `i3blocks.conf`, e.g.:
 
 ```conf
 [load]
-command=~/.config/i3blocks/i3blocks --check $BLOCK_NAME --warning 0.7 --critical 1.0
+command="$HOME"/.config/i3blocks/control --check load --warning 0.7 --critical 1.0
 
 [gpu]
-command=~/.config/i3blocks/i3blocks --check $BLOCK_NAME --warning 70 --critical 80
+command="$HOME"/.config/i3blocks/control --check $BLOCK_NAME --warning 70 --critical 80
 ```
 
 
 ### creating new blocks
-- store new modules in `blocks` as `$BLOCK_NAME.py`
-- update dictionary in `i3blocks` python script, format `$BLOCK_NAME = $module_filename`
-- the script module should have a function `i3blocks_check(warning, critical)`
-- this function should be presented with an int or float to check against
-- the function should output the result in the desired format and/or perform additional actions on check completion
-- define the blocks and configure the alert thresholds in `i3blocks.conf`
-
-**for example** you want to create a new blocklet that displays available updates, i.e., `checkupdates | wc -l`. to alert on this returned value:
-- create a script `updates.py` in `blocklets/` which reads and returns this value
-- include in this script a function called `i3blocks_check(warning, critical)` which simply returns a span of text in font pango markup based on whether the returned integer in this case breaches the warning or critical thresholds, e.g., 50 and 100
-- update the dictionary in main python script `i3blocks` to include this new blocklet by its name `updates`
-- update i3blocks.conf to call it via `i3blocks --check updates --warning 50 --critical 100`
+- store new modules in the `blocks` directory
+- the control script will call its `i3blocks_check(warning, critical)` function
 
 
 ### styling
-- fonts and colours are defined in `styles/styles.py`
-- default fonts are listed above, download these or config your preferred font
-- additional themes are in `styles/themes`
-- select a theme, e.g., powerline, and `cp styles/themes/i3blocks-powerline.conf i3blocks.conf` from the i3blocks directory and restart i3 to update
+- colors/fonts/glyphs can be defined in `i3blocks.conf`
 
 
 ### more info
