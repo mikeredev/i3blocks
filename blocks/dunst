@@ -1,0 +1,42 @@
+#!/bin/bash
+# uses: dunst
+
+# load colors and fonts
+source "$HOME"/.config/i3blocks/functions && load_style
+icon_active=""
+icon_inactive=""
+
+# function to print status icon
+get_status() {
+    if [[ $(dunstctl is-paused) == *true* ]]; then
+        icon="$icon_inactive"
+    else
+        icon="$icon_active"
+    fi
+}
+
+# function to toggle notifications
+toggle_status() {
+    if [[ $(dunstctl is-paused) == *true* ]]; then
+        dunstctl set-paused false && pkill -RTMIN+4 i3blocks
+        icon="$icon_active"
+    else
+        dunstctl set-paused true && pkill -RTMIN+4 i3blocks
+        icon="$icon_inactive"
+    fi
+}
+
+# load mouse-click actions
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+    dunstctl history-pop
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+    toggle_status
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+    dunstctl close-all #& dunstctl history-clear
+fi
+
+# main function
+i3blocks_check() {
+    get_status
+    printf "%s\n" "<span font='$font_glyphs'>$icon</span>"
+}

@@ -12,7 +12,7 @@ fi
 
 # load mouse-click actions
 if [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
-    "$HOME"/.config/scripts/tools/connect-wifi.sh
+    connect-wifi
 fi
 
 # get required values
