@@ -12,7 +12,7 @@ fi
 
 # load mouse-click actions
 if [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
-    connect-wifi
+    ~/.config/rofi/bin/connect-wifi
 fi
 
 # get required values
