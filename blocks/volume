@@ -5,8 +5,12 @@
 source "$HOME"/.config/i3blocks/functions && load_style
 
 # load mouse-click actions
-if [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+    pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+1 i3blocks
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
     pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+1 i3blocks
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+    pactl set-sink-volume @DEFAULT_SINK@ -10% && pkill -RTMIN+1 i3blocks
 elif [[ "${BLOCK_BUTTON}" -eq 4 ]]; then
     pactl set-sink-volume @DEFAULT_SINK@ +10% && pkill -RTMIN+1 i3blocks
 elif [[ "${BLOCK_BUTTON}" -eq 5 ]]; then
