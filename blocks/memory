@@ -31,5 +31,5 @@ i3blocks_check() {
     local warning="$1"
     local critical="$2"
     local status_color=$(get_status_color "$warning" "$critical")
-    printf "%s\n" "<span font='$font_text'>$memory_util% </span><span font='$font_glyphs' color='$status_color'></span>"
+    printf "%s\n" "<span font='$font_text'>$memory_util% </span><span font='$font_glyphs' color='$status_color'></span>"
 }

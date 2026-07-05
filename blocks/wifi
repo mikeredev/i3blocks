@@ -16,7 +16,8 @@ if [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
 fi
 
 # get required values
-wifi_signal=$(awk -v interface="$int" -F'[: ]+' '$0 ~ interface {sub(/\.$/, "", $3); print $3}' /proc/net/wireless)
+wifi_signal=$(awk -v p_int="wlp0s20f0u8" '$1 == p_int ":" { print int($3) }' /proc/net/wireless)
+#wifi_signal=99
 
 # get status
 get_status_color() {
@@ -38,3 +39,5 @@ i3blocks_check() {
     local status_color=$(get_status_color "$warning" "$critical")
     printf "%s\n" "<span font='$font_text'>$wifi_signal% </span><span font='$font_glyphs' color='$status_color'></span>"
 }
+
+

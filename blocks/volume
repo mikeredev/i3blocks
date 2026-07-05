@@ -41,7 +41,7 @@ get_status_color() {
 # get volume icon
 get_icon() {
     if [ "$audio_status" == "[off]" ]; then
-        echo ""   # volume-xmark
+        echo "󰝟"   # volume-xmark
     elif [ "$volume_level" -ge 70 ]; then
         echo ""    # volume-high
     elif [ "$volume_level" -ge 10 ]; then

@@ -29,9 +29,9 @@ get_status_color() {
 
 # get fan status
 get_fan_color() {
-    if [ "$fan" -ge 40 ]; then
-        echo $color_ok          # on/high
-    elif [ "$fan" -ge 20 ]; then
+    if [ "$fan" -gt 45 ]; then
+        echo $color_warn          # on/high
+    elif [ "$fan" -gt 35 ]; then
         echo $color_active      # on/normal
     elif [ "$fan" -gt 0 ]; then
         echo $color_inactive    # on/low
@@ -62,5 +62,5 @@ i3blocks_check() {
     local status_color=$(get_status_color "$warning" "$critical")
     local fan_color=$(get_fan_color)
     local icon=$(get_icon)
-    printf "%s\n" "<span font='$font_text'>$vram% </span><span font='$font_glyphs'><span color='$fan_color'></span> <span color='$status_color'>$icon</span></span>"
+    printf "%s\n" "<span font='$font_text'>$vram% </span><span font='$font_glyphs'><span color='$fan_color'>󰈐 </span> <span color='$status_color'>$icon</span></span>"
 }
